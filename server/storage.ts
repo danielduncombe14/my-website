@@ -6,7 +6,6 @@ import {
   type GalleryItem,
   type InsertGalleryItem,
 } from "@shared/schema";
-import { randomUUID } from "crypto";
 
 export interface IStorage {
   // Blog Posts
