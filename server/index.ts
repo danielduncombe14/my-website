@@ -107,10 +107,11 @@ function getInitializedApp(): Promise<Express> {
   return appPromise;
 }
 
-// Vercel serverless handler
-export default async (req: any, res: any) => {
-  const initializedApp = await getInitializedApp();
-  return initializedApp(req, res);
-};
+// Initialize app on import
+getInitializedApp().catch((err) => {
+  console.error("[FATAL] Initialization error:", err);
+});
 
-export { app };
+// Export app directly - Vercel/Node will handle it
+export default app;
+export { app, getInitializedApp };
