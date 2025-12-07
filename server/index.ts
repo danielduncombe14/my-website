@@ -46,7 +46,7 @@ app.use((req, res, next) => {
   next();
 });
 
-(async () => {
+async function initializeApp() {
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -82,9 +82,16 @@ app.use((req, res, next) => {
       log(`serving on http://${host}:${port}`);
     });
   }
-  
+
   return app;
-})();
+}
+
+// Initialize the app
+initializeApp().catch((err) => {
+  console.error("Failed to initialize app:", err);
+  process.exit(1);
+});
 
 // Export app for Vercel serverless functions
+export default app;
 export { app };
