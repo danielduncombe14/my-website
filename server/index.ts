@@ -72,10 +72,19 @@ app.use((req, res, next) => {
   // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || '5000', 10);
   const host = process.env.HOST || "127.0.0.1";
-  server.listen({
-    port,
-    host,
-  }, () => {
-    log(`serving on http://${host}:${port}`);
-  });
+  
+  // Only start the server if not running on Vercel (which handles listening)
+  if (!process.env.VERCEL) {
+    server.listen({
+      port,
+      host,
+    }, () => {
+      log(`serving on http://${host}:${port}`);
+    });
+  }
+  
+  return app;
 })();
+
+// Export app for Vercel serverless functions
+export { app };
