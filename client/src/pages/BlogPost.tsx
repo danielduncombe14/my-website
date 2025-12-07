@@ -17,7 +17,10 @@ export default function BlogPostPage({ type }: BlogPostPageProps) {
 
   const { data: post, isLoading, isError } = useQuery<BlogPost>({
     queryKey: [`/api/blog/${type}/${postId}`],
+<<<<<<< HEAD
     queryFn: getQueryFn<BlogPost>({ on401: "throw" }),
+=======
+>>>>>>> b04273d01c0ed9401aaa3bb4cdebe3c07bbc34f6
     enabled: !!postId,
   });
 

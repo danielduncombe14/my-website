@@ -8,25 +8,23 @@ import profileImage from "@assets/generated_images/Professional_profile_portrait
 
 export default function About() {
   const skills = [
-    "UI/UX Design",
-    "Web Development",
-    "TypeScript",
-    "React",
-    "Node.js",
-    "Strategic Planning",
+    "Financial Analysis",
+    "Operational Accounting",
+    "Risk & Controls",
+    "Process Optimization",
+    "Data Interpretation",
+    "Technical Writing",
+    "Stakeholder Management",
+    "Travel Photography",
+    "Storytelling",
     "Content Creation",
-    "Creative Writing",
-    "Project Management",
-    "Digital Marketing",
-    "Brand Strategy",
-    "Photography",
   ];
 
   const quickFacts = [
-    { label: "Location", value: "San Francisco, CA" },
-    { label: "Experience", value: "8+ Years" },
-    { label: "Focus", value: "Digital Innovation" },
-    { label: "Availability", value: "Open to Opportunities" },
+    { label: "From", value: "Originally from Canada" },
+    { label: "Current Focus", value: "Travel, Writing & Creative Projects" },
+    { label: "Professional Experience", value: "8+ Years" },
+    { label: "Previous Roles", value: "KPMG • CrossCountry Consulting" },
   ];
 
   return (
@@ -39,7 +37,10 @@ export default function About() {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/60" />
         </div>
-        <h1 className="relative z-10 text-5xl sm:text-6xl font-bold text-white" data-testid="text-about-title">
+        <h1
+          className="relative z-10 text-5xl sm:text-6xl font-bold text-white"
+          data-testid="text-about-title"
+        >
           About Me
         </h1>
       </section>
@@ -47,52 +48,87 @@ export default function About() {
       {/* Content Layout */}
       <section className="py-16 sm:py-24 px-4 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-          {/* Main Biography - 2 columns */}
+          {/* Main Biography */}
           <div className="lg:col-span-2 space-y-6">
             <div>
-              <h2 className="text-3xl font-bold mb-4" data-testid="text-bio-title">My Story</h2>
+              <h2
+                className="text-3xl font-bold mb-4"
+                data-testid="text-bio-title"
+              >
+                My Story
+              </h2>
               <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  I'm a multidisciplinary creative professional with a deep passion for design, technology, 
-                  and storytelling. My journey began over eight years ago when I discovered the intersection 
-                  of visual design and code, and I've been exploring that space ever since.
+                  I'm Daniel, a finance and accounting professional who stepped
+                  away from the corporate world to embark on a year-long journey
+                  across the globe. After more than eight years working with
+                  clients across industries—and being recognized as an
+                  Exceptional Employee at both KPMG and CrossCountry—I realized
+                  I wanted to experience the world more deeply and reconnect
+                  with my curiosity, creativity, and sense of adventure.
                 </p>
+
                 <p>
-                  Throughout my career, I've had the privilege of working with diverse teams and clients, 
-                  from innovative startups to established enterprises. Each project has taught me the value 
-                  of empathy, clear communication, and the importance of user-centered design thinking.
+                  My career has taught me the importance of precision,
+                  integrity, and building strong relationships. Whether managing
+                  complex audits, improving internal controls, or supporting
+                  operational teams, I’ve always approached work with a balance
+                  of analytical thinking and empathy.
                 </p>
+
                 <p>
-                  My approach combines strategic thinking with hands-on execution. I believe that great work 
-                  comes from understanding both the big picture and the smallest details. Whether I'm designing 
-                  an interface, writing code, or crafting content, I strive for excellence and continuous improvement.
+                  In 2024–2025, I shifted gears and began traveling full-time.
+                  My journey has taken me from African safaris and remote
+                  islands to historic cities, mountains, and deserts. Along the
+                  way, I’ve rediscovered my love for storytelling, meeting new
+                  people, documenting experiences, and diving into cultures far
+                  from home.
                 </p>
+
                 <p>
-                  Beyond professional work, I'm an avid photographer, writer, and lifelong learner. I believe 
-                  in giving back to the community through mentorship and sharing knowledge. When I'm not working, 
-                  you'll find me exploring new places, experimenting with new technologies, or enjoying a good book.
+                  Today, I combine my professional background with a passion for
+                  exploring the world, creating meaningful content, and sharing
+                  what I learn. Whether I’m writing, photographing wildlife,
+                  developing new ideas, or planning future projects, I’m driven
+                  by curiosity and a desire to grow.
+                </p>
+
+                <p>
+                  This website—
+                  <span className="font-medium">
+                    From Boardrooms to Backroads
+                  </span>
+                  — is a reflection of that journey: a space where structured
+                  thinking meets spontaneous adventure.
                 </p>
               </div>
             </div>
 
             <div className="pt-8">
-              <h2 className="text-3xl font-bold mb-4" data-testid="text-philosophy-title">My Philosophy</h2>
+              <h2
+                className="text-3xl font-bold mb-4"
+                data-testid="text-philosophy-title"
+              >
+                My Philosophy
+              </h2>
               <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  I believe that design and technology should serve humanity, not the other way around. 
-                  Every project is an opportunity to create something meaningful that improves people's lives, 
-                  even in small ways.
+                  I believe the best growth comes from stepping outside of what
+                  feels familiar—whether in work, travel, or personal
+                  development. Every place, project, and person teaches
+                  something new if you’re open to it.
                 </p>
                 <p>
-                  Collaboration is at the heart of everything I do. The best solutions emerge when diverse 
-                  perspectives come together with a shared purpose. I'm always eager to learn from others 
-                  and contribute my own insights to create something greater than the sum of its parts.
+                  I value intentional living, continuous learning, and the
+                  balance between structure and curiosity. And whether I'm
+                  building financial models or trekking across rural landscapes,
+                  I try to stay grounded, grateful, and open to the unexpected.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Sidebar - 1 column */}
+          {/* Sidebar */}
           <div className="space-y-6">
             {/* Profile Photo */}
             <Card>
@@ -100,26 +136,28 @@ export default function About() {
                 <div className="flex justify-center mb-6">
                   <Avatar className="w-48 h-48">
                     <AvatarImage src={profileImage} alt="Profile" />
-                    <AvatarFallback>JD</AvatarFallback>
+                    <AvatarFallback>DD</AvatarFallback>
                   </Avatar>
                 </div>
-                <h3 className="text-xl font-semibold text-center mb-2">Jane Doe</h3>
+                <h3 className="text-xl font-semibold text-center mb-2">
+                  Daniel Duncombe
+                </h3>
                 <p className="text-muted-foreground text-center mb-6">
-                  Creative Professional & Digital Innovator
+                  Finance Professional • Traveler • Storyteller
                 </p>
-                
+
                 {/* Social Links */}
                 <div className="flex justify-center gap-2">
-                  <Button variant="ghost" size="icon" data-testid="button-email">
+                  <Button variant="ghost" size="icon">
                     <Mail className="w-4 h-4" />
                   </Button>
-                  <Button variant="ghost" size="icon" data-testid="button-github">
+                  <Button variant="ghost" size="icon">
                     <Github className="w-4 h-4" />
                   </Button>
-                  <Button variant="ghost" size="icon" data-testid="button-linkedin">
+                  <Button variant="ghost" size="icon">
                     <Linkedin className="w-4 h-4" />
                   </Button>
-                  <Button variant="ghost" size="icon" data-testid="button-twitter">
+                  <Button variant="ghost" size="icon">
                     <Twitter className="w-4 h-4" />
                   </Button>
                 </div>
@@ -130,11 +168,15 @@ export default function About() {
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold mb-4">Quick Facts</h3>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {quickFacts.map((fact) => (
-                    <div key={fact.label} className="flex justify-between">
-                      <span className="text-muted-foreground">{fact.label}:</span>
-                      <span className="font-medium">{fact.value}</span>
+                    <div key={fact.label} className="flex flex-col gap-1">
+                      <span className="text-sm text-muted-foreground font-medium">
+                        {fact.label}
+                      </span>
+                      <span className="text-base font-semibold text-foreground">
+                        {fact.value}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -145,7 +187,10 @@ export default function About() {
 
         {/* Skills Section */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold mb-6 text-center" data-testid="text-skills-title">
+          <h2
+            className="text-3xl font-bold mb-6 text-center"
+            data-testid="text-skills-title"
+          >
             Skills & Expertise
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
@@ -154,7 +199,6 @@ export default function About() {
                 key={skill}
                 variant="secondary"
                 className="text-base px-4 py-2"
-                data-testid={`badge-skill-${skill.toLowerCase().replace(/\//g, "-").replace(/ /g, "-")}`}
               >
                 {skill}
               </Badge>
