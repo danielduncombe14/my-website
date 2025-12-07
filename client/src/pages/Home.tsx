@@ -5,18 +5,22 @@ import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { BlogPost, GalleryItem } from "@shared/schema";
 import heroImage from "@assets/generated_images/Workspace_hero_image_a4d128f5.png";
+import { getQueryFn } from "@/lib/queryClient";
 
 export default function Home() {
   const { data: personalPosts, isError: personalError } = useQuery<BlogPost[]>({
     queryKey: ["/api/blog/personal"],
+    queryFn: getQueryFn<BlogPost[]>({ on401: "throw" }),
   });
 
   const { data: businessPosts, isError: businessError } = useQuery<BlogPost[]>({
     queryKey: ["/api/blog/business"],
+    queryFn: getQueryFn<BlogPost[]>({ on401: "throw" }),
   });
 
   const { data: galleryItems, isError: galleryError } = useQuery<GalleryItem[]>({
     queryKey: ["/api/gallery"],
+    queryFn: getQueryFn<GalleryItem[]>({ on401: "throw" }),
   });
 
   const latestPersonal = !personalError ? personalPosts?.[0] : undefined;
@@ -39,7 +43,7 @@ export default function Home() {
             Welcome to My Portfolio
           </h1>
           <p className="text-xl sm:text-2xl text-white/90 mb-8 font-medium" data-testid="text-hero-subtitle">
-            Designer • Developer • Creative Thinker
+            Traveler • Strategist • Creator
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/gallery">
@@ -191,12 +195,12 @@ export default function Home() {
       <section className="py-16 sm:py-24 px-4 bg-card">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6" data-testid="text-intro-title">
-            Hello, I'm a Creative Professional
+            Hello, I'm a Multi-Disciplinary Explorer
           </h2>
           <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-            With a passion for design, technology, and innovation, I create meaningful digital experiences 
-            that bridge creativity and functionality. My work spans across multiple disciplines, 
-            combining strategic thinking with hands-on execution.
+            I blend travel, business insight, and creative problem-solving to bring ideas to life. My work connects 
+            analytical thinking with real-world exploration, whether I’m building projects, breaking down 
+            financial systems, or documenting experiences from my travels.
           </p>
           <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
             I believe in continuous learning, thoughtful problem-solving, and the power of well-crafted solutions. 

@@ -4,10 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { GraduationCap, Award, Star, Briefcase } from "lucide-react";
 import type { Credential } from "@shared/schema";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getQueryFn } from "@/lib/queryClient";
 
 export default function Credentials() {
   const { data: credentials, isLoading, isError } = useQuery<Credential[]>({
     queryKey: ["/api/credentials"],
+    queryFn: getQueryFn<Credential[]>({ on401: "throw" }),
   });
 
   const education = credentials?.filter((c) => c.type === "education") || [];

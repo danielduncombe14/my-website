@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowLeft, User } from "lucide-react";
 import type { BlogPost } from "@shared/schema";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getQueryFn } from "@/lib/queryClient";
 
 interface BlogPostPageProps {
   type: "personal" | "business";
@@ -15,14 +16,8 @@ export default function BlogPostPage({ type }: BlogPostPageProps) {
   const postId = params?.id;
 
   const { data: post, isLoading, isError } = useQuery<BlogPost>({
-    queryKey: [`/api/blog/${type}`, postId],
-    queryFn: async () => {
-      const response = await fetch(`/api/blog/${type}/${postId}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch post");
-      }
-      return response.json();
-    },
+    queryKey: [`/api/blog/${type}/${postId}`],
+    queryFn: getQueryFn<BlogPost>({ on401: "throw" }),
     enabled: !!postId,
   });
 

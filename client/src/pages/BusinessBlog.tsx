@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import type { BlogPost } from "@shared/schema";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getQueryFn } from "@/lib/queryClient";
 
 export default function BusinessBlog() {
   const { data: posts, isLoading, isError } = useQuery<BlogPost[]>({
     queryKey: ["/api/blog/business"],
+    queryFn: getQueryFn<BlogPost[]>({ on401: "throw" }),
   });
 
   return (

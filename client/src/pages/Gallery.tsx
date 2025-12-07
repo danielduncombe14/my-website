@@ -5,10 +5,12 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import type { GalleryItem } from "@shared/schema";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getQueryFn } from "@/lib/queryClient";
 
 export default function Gallery() {
   const { data: galleryItems, isLoading, isError } = useQuery<GalleryItem[]>({
     queryKey: ["/api/gallery"],
+    queryFn: getQueryFn<GalleryItem[]>({ on401: "throw" }),
   });
 
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
