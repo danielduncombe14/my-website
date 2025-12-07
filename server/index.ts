@@ -46,15 +46,25 @@ app.use((req, res, next) => {
   next();
 });
 
-async function initializeApp() {
+let appPromise: Promise<Express> | null = null;
+
+async function initializeApp(): Promise<Express> {
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
+    // Type-safe status extraction with proper fallback
+    const status = typeof err.status === 'number' ? err.status :
+                   typeof err.statusCode === 'number' ? err.statusCode :
+                   500;
+    const message = String(err?.message || "Internal Server Error");
 
-    res.status(status).json({ message });
-    throw err;
+    // Only send response if headers haven't been sent
+    if (!res.headersSent) {
+      res.status(status).json({ message });
+    }
+    
+    // Log the error for debugging
+    console.error("[ERROR]", { status, message, stack: err?.stack });
   });
 
   // importantly only setup vite in development and after
@@ -86,12 +96,21 @@ async function initializeApp() {
   return app;
 }
 
-// Initialize the app
-initializeApp().catch((err) => {
-  console.error("Failed to initialize app:", err);
-  process.exit(1);
-});
+// Lazy initialization - ensures app is ready before handling requests
+function getInitializedApp(): Promise<Express> {
+  if (!appPromise) {
+    appPromise = initializeApp().catch((err) => {
+      console.error("[FATAL] Failed to initialize app:", err);
+      return app;
+    });
+  }
+  return appPromise;
+}
 
-// Export app for Vercel serverless functions
-export default app;
+// Vercel serverless handler
+export default async (req: any, res: any) => {
+  const initializedApp = await getInitializedApp();
+  return initializedApp(req, res);
+};
+
 export { app };

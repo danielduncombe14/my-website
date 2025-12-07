@@ -2,11 +2,25 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage.ts";
 
-// Helper to handle async route errors
+// Helper to handle async route errors with proper logging
 const asyncHandler = (fn: (req: any, res: any) => Promise<void>) => 
-  (req: any, res: any) => fn(req, res).catch((error: any) => {
-    res.status(500).json({ error: "Internal server error" });
-  });
+  (req: any, res: any) => {
+    return Promise.resolve(fn(req, res)).catch((error: any) => {
+      // Only send error response if headers haven't been sent
+      if (!res.headersSent) {
+        console.error("[Route Error]", {
+          path: req.path,
+          method: req.method,
+          error: error?.message || String(error),
+          stack: error?.stack,
+        });
+        res.status(500).json({ error: "Internal server error" });
+      } else {
+        // Headers already sent, just log
+        console.error("[Route Error - Headers Sent]", error?.message || String(error));
+      }
+    });
+  };
 
 // Helper to validate blog type
 const isValidBlogType = (type: string): type is "personal" | "business" =>
