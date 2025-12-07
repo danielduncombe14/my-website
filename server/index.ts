@@ -97,7 +97,7 @@ async function initializeApp(): Promise<Express> {
 }
 
 // Lazy initialization - ensures app is ready before handling requests
-function getInitializedApp(): Promise<Express> {
+export function getInitializedApp(): Promise<Express> {
   if (!appPromise) {
     appPromise = initializeApp().catch((err) => {
       console.error("[FATAL] Failed to initialize app:", err);
@@ -107,11 +107,8 @@ function getInitializedApp(): Promise<Express> {
   return appPromise;
 }
 
-// Initialize app on import
-getInitializedApp().catch((err) => {
-  console.error("[FATAL] Initialization error:", err);
-});
+// Trigger initialization
+getInitializedApp().catch(console.error);
 
-// Export app directly - Vercel/Node will handle it
 export default app;
-export { app, getInitializedApp };
+export { app };
