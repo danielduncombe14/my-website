@@ -110,19 +110,28 @@ export class MemStorage implements IStorage {
     const edu1: Credential = {
       id: "edu-1",
       type: "education",
-      title: "Master of Fine Arts in Digital Design",
-      organization: "Stanford University",
-      date: "2012 - 2014",
-      description: "Specialized in interaction design and human-computer interaction. Thesis on designing intuitive interfaces for complex systems.",
+      title: "Chartered Professional Accountants of Canada (CPA Canada)",
+      organization: "CPA Canada",
+      date: "2018 - 2021",
+      description: "Professional accounting designation demonstrating expertise in financial management, accounting practices, and ethical business standards.",
     };
 
     const edu2: Credential = {
       id: "edu-2",
       type: "education",
-      title: "Bachelor of Science in Computer Science",
-      organization: "University of California, Berkeley",
-      date: "2008 - 2012",
-      description: "Focus on software engineering and user experience design. Graduated with honors.",
+      title: "Bachelor of Commerce (BCom), Accounting",
+      organization: "The University of British Columbia",
+      date: "2013 - 2018",
+      description: "Focused on accounting and commerce. Involved in UBC Recreation as an Assistant Director and participated in JDC West as a coach.",
+    };
+
+    const edu3: Credential = {
+      id: "edu-3",
+      type: "education",
+      title: "Bachelor of Commerce (BCom), Accounting",
+      organization: "National University of Singapore",
+      date: "2016 - 2016",
+      description: "Exchange program. Received the NUS Lee Foundation Award worth $2,500 for academic and extra-curricular achievement.",
     };
 
     // Seed Credentials - Certifications
@@ -164,7 +173,7 @@ export class MemStorage implements IStorage {
     };
 
     // Add credentials to storage
-    [edu1, edu2, cert1, cert2, cert3, award1].forEach((cred) => {
+    [edu1, edu2, edu3, cert1, cert2, cert3, award1].forEach((cred) => {
       this.credentials.set(cred.id, cred);
     });
 

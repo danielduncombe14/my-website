@@ -41,25 +41,48 @@ export default function Home() {
           <p className="text-xl sm:text-2xl text-white/90 mb-8 font-medium" data-testid="text-hero-subtitle">
             Designer • Developer • Creative Thinker
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/gallery">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 justify-center max-w-2xl mx-auto">
+            <Link href="/credentials">
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-background/10 backdrop-blur-md border-white/20 text-white hover:bg-background/20"
-                data-testid="button-view-work"
+                className="w-full bg-background/10 backdrop-blur-md border-white/20 text-white hover:bg-background/20"
+                data-testid="button-view-credentials"
               >
-                View My Work
+                View My Credentials
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
             <Link href="/personal-blog">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground"
-                data-testid="button-read-blog"
+                variant="outline"
+                className="w-full bg-background/10 backdrop-blur-md border-white/20 text-white hover:bg-background/20"
+                data-testid="button-read-personal-blog"
               >
-                Read Blog
+                Read Personal Blog
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+            <Link href="/business-blog">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full bg-background/10 backdrop-blur-md border-white/20 text-white hover:bg-background/20"
+                data-testid="button-read-business-blog"
+              >
+                Read Business Blog
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+            <Link href="/about">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full bg-background/10 backdrop-blur-md border-white/20 text-white hover:bg-background/20"
+                data-testid="button-who-am-i"
+              >
+                Who Am I?
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
@@ -191,16 +214,19 @@ export default function Home() {
       <section className="py-16 sm:py-24 px-4 bg-card">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6" data-testid="text-intro-title">
-            Hello, I'm a Creative Professional
+            Hi, I'm Daniel
           </h2>
           <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-            With a passion for design, technology, and innovation, I create meaningful digital experiences 
-            that bridge creativity and functionality. My work spans across multiple disciplines, 
-            combining strategic thinking with hands-on execution.
+            A creative problem-solver who blends finance and accounting with technology and strategy to build clean, impactful solutions.
+          </p>
+          <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+            My career started in the financial world, where I learned how to analyze complex systems, think strategically, and make data-driven decisions. Today, I want to bring that same knowledge and structure and blend it with my technological savy in order to design and develop creative solutions to modern problems.
+          </p>
+          <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+            Travel has shaped a huge part of who I am. Experiencing new cultures, environments, and ways of thinking has expanded my perspective and strengthened my ability to design and create with empathy. Whether I'm on the road exploring a new country or working through a project in the digital space, I'm always learning, adapting, and refining how I approach challenges.
           </p>
           <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-            I believe in continuous learning, thoughtful problem-solving, and the power of well-crafted solutions. 
-            Whether it's through writing, design, or development, I strive to make an impact.
+            I love transforming ideas into clean, functional, meaningful solutions. Blending creativity with analytical thinking, whether it's design, writing, or development, my focus is simple: create work that is intentional, effective, and built to make an impact.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/about">
