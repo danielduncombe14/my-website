@@ -68,6 +68,19 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
+  // On Vercel, static files are served by Vercel's built-in static handler
+  // This function is only called in non-Vercel production (which doesn't happen)
+  // So we can safely skip static serving
+  
+  if (process.env.VERCEL) {
+    // On Vercel, don't try to serve static files
+    // The SPA fallback is handled by vercel.json
+    app.use("*", (_req, res) => {
+      res.status(404).json({ error: "Not found" });
+    });
+    return;
+  }
+  
   const distPath = path.resolve(import.meta.dirname, "..", "dist", "public");
 
   if (!fs.existsSync(distPath)) {

@@ -8,16 +8,25 @@
     "api/index.ts": {
       "runtime": "nodejs20.x",
       "maxDuration": 30
+    },
+    "api/_not_found.ts": {
+      "runtime": "nodejs20.x"
     }
   },
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/:path*",
       "destination": "/api"
+    }
+  ],
+  "routes": [
+    {
+      "handle": "filesystem"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(?!api)(?!.*).*",
+      "status": 404,
+      "dest": "/api/_not_found"
     }
   ]
 }
