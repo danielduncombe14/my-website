@@ -22,9 +22,13 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 // Initialize routes
+// Synchronously register routes
 registerRoutes(app).catch((err) => {
   console.error("[FATAL] Failed to register routes:", err);
-  process.exit(1);
+  // Only exit if not on Vercel (Vercel uses serverless functions)
+  if (!process.env.VERCEL) {
+    process.exit(1);
+  }
 });
 
 export default app;

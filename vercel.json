@@ -1,32 +1,21 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/public",
   "env": {
     "NODE_ENV": "production"
   },
-  "functions": {
-    "api/index.ts": {
-      "runtime": "nodejs20.x",
-      "maxDuration": 30
-    },
-    "api/_not_found.ts": {
-      "runtime": "nodejs20.x"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/api"
-    }
-  ],
   "routes": [
     {
-      "handle": "filesystem"
+      "src": "/api/(.*)",
+      "dest": "/api/index.ts",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"]
     },
     {
-      "src": "/(?!api)(?!.*).*",
-      "status": 404,
-      "dest": "/api/_not_found"
+      "src": "/(?!api)(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|eot|json)$)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/(?!api)(.*)",
+      "dest": "/public/index.html"
     }
   ]
 }
