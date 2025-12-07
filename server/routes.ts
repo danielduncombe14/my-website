@@ -1,5 +1,4 @@
 import type { Express } from "express";
-import { createServer, type Server } from "http";
 import { storage } from "./storage.ts";
 
 // Helper to handle async route errors with proper logging
@@ -26,7 +25,7 @@ const asyncHandler = (fn: (req: any, res: any) => Promise<void>) =>
 const isValidBlogType = (type: string): type is "personal" | "business" =>
   type === "personal" || type === "business";
 
-export async function registerRoutes(app: Express): Promise<Server> {
+export async function registerRoutes(app: Express): Promise<void> {
   // Blog Posts Routes
   app.get("/api/blog/:type", asyncHandler(async (req, res) => {
     const { type } = req.params;
@@ -81,8 +80,4 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
     res.json(item);
   }));
-
-  const httpServer = createServer(app);
-
-  return httpServer;
 }
